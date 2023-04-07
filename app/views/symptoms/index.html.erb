@@ -8,8 +8,9 @@
 </option>
 <% end %>
 </select>
-<select id = "symptom">
+<select hidden="hidden" id="symptom">
 </select>
+</div>
 </div>
 <script>
 $(document).ready(function(){
@@ -23,10 +24,11 @@ success: function(data){
   var options = '';
   data = data[0];
   data = data['symptoms'];
-  for (var i = 0; i < data.length; i++) {
-    console.log(data);
+  for (var i = 0; i < data.length; i++) 
+  {
+    options += '<option value="' + data[i]['id'] + '">' + data[i]['title'] + '</option>';
   }
-  console.log(data);
+  $("#symptom").removeAttr('hidden');
   $("#symptom").html(options);
 }
 });
