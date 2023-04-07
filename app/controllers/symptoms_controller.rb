@@ -3,6 +3,12 @@ class SymptomsController < ApplicationController
 
   # GET /symptoms or /symptoms.json
   def index
+    api = "https://www.moja-diagnoza.si/api/v1/symptoms/bodypart/"
+    require 'net/http'
+    require 'json'
+    @symptoms = JSON.parse(Net::HTTP.get(URI(api)))
+    
+
   end
 
   private

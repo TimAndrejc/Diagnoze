@@ -1,6 +1,36 @@
 <p style="color: green"><%= notice %></p>
 
 <div>
-  hello
+<select id="part">
+<% @symptoms.each do |symptom| %>
+<option value="<%= symptom['code'] %>">
+<%= symptom['name'] %>
+</option>
+<% end %>
+</select>
+<select id = "symptom">
+</select>
 </div>
+<script>
+$(document).ready(function(){
+$("#part").change(function(){
+var part = $(this).val();
+$.ajax({
+url: "https://www.moja-diagnoza.si/api/v1/symptoms/bodypart/",
+type: "GET",
+data: {code: part},
+success: function(data){
+  var options = '';
+  data = data[0];
+  data = data['symptoms'];
+  for (var i = 0; i < data.length; i++) {
+    console.log(data);
+  }
+  console.log(data);
+  $("#symptom").html(options);
+}
+});
+});
+});
+</script>
 
