@@ -1,17 +1,12 @@
 class SymptomsController < ApplicationController
   before_action :set_symptom, only: %i[ show edit update destroy ]
-
   # GET /symptoms or /symptoms.json
   def index
     api = "https://www.moja-diagnoza.si/api/v1/symptoms/bodypart/"
     require 'net/http'
     require 'json'
     @symptoms = JSON.parse(Net::HTTP.get(URI(api)))
-  end
-
-  def GetData
-  end
-    
+  end    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_symptom
