@@ -1,5 +1,6 @@
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
+<%= form_with do |form| %>
 <div class="container">
 <div class="row">
 <div class="col-md-12">
@@ -28,14 +29,23 @@
 <h2>Choose symptom</h2>
 </div>
 </div>
+<div hidden="hidden" id ="hide" class="row">
+<div  class="col-md-12">
+<select  id="symptom" >
+</select>
+</div>
+<div class ="col-md-12">
+<%= form.submit "Submit" %>
+</div>
+</div>
 <div class="row">
 <div class="col-md-12">
-<select hidden="hidden" id="symptom">
-</select>
+
 </div>
 </div>
 </div>
 
+<% end %>
 <script>
 $(document).ready(function(){
 $("#part").change(function(){
@@ -52,7 +62,7 @@ success: function(data){
   {
     options += '<option value="' + data[i]['id'] + '">' + data[i]['title'] + '</option>';
   }
-  $("#symptom").removeAttr('hidden');
+  $("#hide").removeAttr('hidden');
   $("#symptom").html(options);
 }
 });
