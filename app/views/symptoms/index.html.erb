@@ -1,6 +1,18 @@
 <p style="color: green"><%= notice %></p>
-
-<div>
+<p style="color: red"><%= alert %></p>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<h1>Diagnosis</h1>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<h2>Choose body part</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
 <select id="part">
 <% @symptoms.each do |symptom| %>
 <option value="<%= symptom['code'] %>">
@@ -8,10 +20,22 @@
 </option>
 <% end %>
 </select>
+</div>
+<div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<h2>Choose symptom</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
 <select hidden="hidden" id="symptom">
 </select>
 </div>
 </div>
+</div>
+
 <script>
 $(document).ready(function(){
 $("#part").change(function(){
