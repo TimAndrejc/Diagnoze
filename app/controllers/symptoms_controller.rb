@@ -7,11 +7,10 @@ class SymptomsController < ApplicationController
     require 'net/http'
     require 'json'
     @symptoms = JSON.parse(Net::HTTP.get(URI(api)))
-    
-
   end
 
   def GetData
+  end
     
   private
     # Use callbacks to share common setup or constraints between actions.
