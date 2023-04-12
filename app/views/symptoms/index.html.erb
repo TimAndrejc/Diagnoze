@@ -21,7 +21,8 @@
 </option>
 <% end %>
 
-<%= form.hidden_field :bodyPart %>
+<%= form.hidden_field :bodyPart, id:"AllBodyParts" %>
+<%= form.hidden_field :symptoms, id:"AllSymptoms"%>
 </div>
 <div>
 </div>
@@ -31,11 +32,16 @@
 </div>
 </div>
 <div hidden="hidden" id ="hide" class="row">
-<div  class="col-md-12">
-<%= form.select :symptom, id:"" %>
+<div id="" class="col-md-12">
+<%= form.select :symptom, id:"symptom" %>
 </div>
 <div class ="col-md-12">
 <%= form.submit "Submit" %>
+</div>
+<div class="col-md-12">
+<div onclick="addSymptom()" class="btn btn-primary">
+  New symptom
+</div>
 </div>
 </div>
 <div class="row">
@@ -47,7 +53,21 @@
 
 <% end %>
 <script>
+var Number  = 0;
+var symptoms = [];
+var parts = [];
+function addSymptom(){
+  parts[Number] = $("#part").val();
+  symptoms[Number] = $("#symptom").val();
+  $("#AllSymptoms").val(symptoms);
+  $("#AllBodyParts").val(parts);
+  Number++;
+  console.log(symptoms);
+  console.log(parts);
+}
+
 $(document).ready(function(){
+
 
 $("#part").change(function(){
 
