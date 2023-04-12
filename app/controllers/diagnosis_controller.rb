@@ -1,7 +1,7 @@
 class DiagnosisController < ApplicationController
     def new
         @diagnosis = params
-
+        raise @diagnosis
         @example = '{
             "diagnoza1": "Diagnoza 1",
             "diagnoza2": "Diagnoza 2",
