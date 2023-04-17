@@ -1,4 +1,6 @@
 class DiagnosisController < ApplicationController
+    before_action :authenticate_user!
+
     def new
         @diagnosis = params
         raise @diagnosis
@@ -23,6 +25,12 @@ class DiagnosisController < ApplicationController
     end
 
     private
+
+    def authenticate_user!
+        if !user_signed_in?
+            redirect_to new_user_session_path
+        end
+    end
     def diagnosis_params
         params.require(:diagnosis).permit()
     end
