@@ -26,7 +26,7 @@ class DiagnosisController < ApplicationController
         @symptoms.user_id = current_user.id
         @symptoms.save
         @diagnose = Diagnosis.new
-        @diagnose.all = @content
+        @diagnose.alldiagnoses = @content[:diagnoza1] + ";" + @content[:diagnoza2] + ";" + @content[:diagnoza3]
         @diagnose.symptoms_id = @symptoms.id
         @diagnose.save
         redirect_to root_path
