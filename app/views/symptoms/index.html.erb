@@ -15,6 +15,8 @@
 <div class="row">
 <div class="col-md-12">
 <select id="part">
+<option value="">
+</option>
 <% @symptoms.each do |symptom| %>
 <option value="<%= symptom['code'] %>">
 <%= symptom['name'] %>
@@ -26,23 +28,29 @@
 </div>
 <div>
 </div>
+
+<div hidden="hidden" id ="hide" class="row">
 <div class="row">
 <div class="col-md-12">
 <h2>Choose symptom</h2>
 </div>
 </div>
-<div hidden="hidden" id ="hide" class="row">
 <div id="" class="col-md-12">
 <%= form.select :symptom, id:"symptom" %>
 </div>
-<div class ="col-md-12">
-<%= form.submit "Submit" %>
-</div>
+<br>
+<br>
 <div class="col-md-12">
 <div onclick="addSymptom()" class="btn btn-primary">
-  New symptom
+  Add symptom to list
 </div>
 </div>
+<br>
+<br>
+<div class ="col-md-12">
+<%= form.submit "Submit", class: "btn btn-primary"%>
+</div>
+
 </div>
 <div class="row">
 <div class="col-md-12">
@@ -64,13 +72,18 @@ function addSymptom(){
   Number++;
   console.log(symptoms);
   console.log(parts);
+  alert("Symptom added to list, add more or submit.");
 }
-
 $(document).ready(function(){
 
 
 $("#part").change(function(){
-
+if($("#part").val() == ""){
+  $("#hide").attr('hidden', 'hidden');
+}
+else{
+  $("#hide").removeAttr('hidden');
+}
 var part = $(this).val();
 $("#bodyPart").val(part);
 $.ajax({

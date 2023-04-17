@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  All: MyText
+  Chosen: MyText
+
+two:
+  All: MyText
+  Chosen: MyText
