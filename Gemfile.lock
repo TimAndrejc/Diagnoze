@@ -237,6 +237,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  figaro
   inline_svg
   jbuilder
   jsbundling-rails
