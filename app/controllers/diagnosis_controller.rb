@@ -43,7 +43,13 @@ class DiagnosisController < ApplicationController
 
 
     end
+    def update
+        @diagnosis = Diagnosis.find(params[:id])
+        @diagnosis.chosen = params["diagnosis"]["chosen"]
+        @diagnosis.save
+        redirect_to root_path
 
+    end
     private
 
     def authenticate_user!

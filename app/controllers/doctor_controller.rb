@@ -1,7 +1,7 @@
 class DoctorController < ApplicationController
     before_action :authenticate_user!
     def index
-        @diagnoses = Diagnosis.all
+        @diagnoses = Diagnosis.find_by(chosen: nil)
         @symptoms = Symptom.all
     end
 
