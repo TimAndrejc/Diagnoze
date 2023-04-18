@@ -8,7 +8,7 @@ class DiagnosisController < ApplicationController
             "diagnoza2": "Diagnoza 2",
             "diagnoza3": "Diagnoza 3"
         }'
-        data = { "messages": [{"role": "user", "content": "Predstavljaj si da si zdravnik. Pacient na predelu "+ @diagnosis['bodyPart'] + " čuti ta simptom  " + @diagnosis['symptoms'] + ". Odgovori samo s tremi najbolj primernimi diagnozozami, brez opisa. Odgovori kot primer:" + @example}], "max_tokens": 512,  "model": "gpt-3.5-turbo"}
+        data = { "messages": [{"role": "user", "content": "Predstavljaj si da si zdravnik. Pacient na predelu "+ @diagnosis['AllBodyParts'] + " čuti ta simptom  " + @diagnosis['symptoms'] + ". Odgovori samo s tremi najbolj primernimi diagnozozami, brez opisa. Odgovori kot primer:" + @example}], "max_tokens": 512,  "model": "gpt-3.5-turbo"}
         require 'net/http'
         require 'json'
         # Set up the API endpoint URL and the API key
@@ -22,7 +22,7 @@ class DiagnosisController < ApplicationController
         @content = JSON.parse(@content, {symbolize_names: true})   
         @symptoms = Symptom.new
         @symptoms.allsymptoms = @diagnosis['symptoms']
-        @symptoms.bodyparts = @diagnosis['bodyPart']
+        @symptoms.bodyparts = @diagnosis['AllBodyParts']
         @symptoms.user_id = current_user.id
         @symptoms.save
         @diagnose = Diagnosis.new
