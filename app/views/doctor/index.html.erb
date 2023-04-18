@@ -1,0 +1,11 @@
+<% if @diagnoses.present? %>
+<% @diagnoses.each do |d|%>
+
+<%= link_to d.alldiagnoses, d %> 
+
+<% end %>
+<% else %>
+<h2> No diagnosis found </h2> 
+<% end %>
+
+
