@@ -31,6 +31,18 @@ class DiagnosisController < ApplicationController
         @diagnose.save
         redirect_to root_path
     end
+    def show
+        @diagnosis = Diagnosis.find(params[:id])
+        @symptomss = Symptom.find(@diagnosis.symptoms_id)
+        @diagnoses = @diagnosis.alldiagnoses.split(";")
+        @symptoms = @symptomss.allsymptoms.split(",")
+        @bodyparts = @symptomss.bodyparts.split(",")
+        @diagnosis1 = @diagnoses[0]
+        @diagnosis2 = @diagnoses[1]
+        @diagnosis3 = @diagnoses[2]
+
+
+    end
 
     private
 

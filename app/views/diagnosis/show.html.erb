@@ -1,0 +1,34 @@
+<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th class="col-6">Body Part</th>
+      <th class="col-6">Symptoms</th>
+    </tr>
+    <% @bodyparts.count.times do |i| %> 
+        <tr>
+        <td class="col-6"> <%= @bodyparts[i] %> </td>
+        <td class="col-6"> <%= @symptoms[i] %> </td>
+        </tr>
+<% end %>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+<div class="text-center">
+<h2>Possible diagnosis</h2>
+<button class ="btn btn-primary"> <%= @diagnosis1%> </button>
+<button class ="btn btn-primary"> <%= @diagnosis2%> </button>
+<button class ="btn btn-primary"> <%= @diagnosis3%> </button>
+<br>
+<hr>
+<h2> Other diagnosis? </h2>
+<%= form_for @diagnosis do |f| %>
+    <div class="d-flex justify-content-center">
+    <%= f.text_field :chosen, placeholder: "Enter diagnosis", class: "form-control", style:"width:25%" %>
+    </div>
+    <br>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+</div>
+

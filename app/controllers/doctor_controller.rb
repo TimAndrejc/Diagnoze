@@ -4,6 +4,9 @@ class DoctorController < ApplicationController
         @diagnoses = Diagnosis.all
         @symptoms = Symptom.all
     end
+
+
+
     private
     def authenticate_user!
         if  user_signed_in?
