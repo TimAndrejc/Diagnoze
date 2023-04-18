@@ -15,42 +15,28 @@
 <div class="row">
 <div class="col-md-12">
 <select id="part">
-<option value="">
-</option>
 <% @symptoms.each do |symptom| %>
 <option value="<%= symptom['code'] %>">
 <%= symptom['name'] %>
 </option>
 <% end %>
 
-<%= form.hidden_field :bodyPart, id:"AllBodyParts" %>
-<%= form.hidden_field :symptoms, id:"AllSymptoms"%>
+<%= form.hidden_field :bodyPart %>
 </div>
 <div>
 </div>
-
-<div hidden="hidden" id ="hide" class="row">
 <div class="row">
 <div class="col-md-12">
 <h2>Choose symptom</h2>
 </div>
 </div>
-<div id="" class="col-md-12">
-<%= form.select :symptom, id:"symptom" %>
+<div hidden="hidden" id ="hide" class="row">
+<div  class="col-md-12">
+<%= form.select :symptom, id:"" %>
 </div>
-<br>
-<br>
-<div class="col-md-12">
-<div onclick="addSymptom()" class="btn btn-primary">
-  Add symptom to list
-</div>
-</div>
-<br>
-<br>
 <div class ="col-md-12">
-<%= form.submit "Submit", class: "btn btn-primary"%>
+<%= form.submit "Submit" %>
 </div>
-
 </div>
 <div class="row">
 <div class="col-md-12">
@@ -59,32 +45,20 @@
 </div>
 </div>
 
+
 <% end %>
+<%= inline_svg "male-front.svg" %>
 <script>
-var Number  = 0;
-var symptoms = [];
-var parts = [];
-function addSymptom(){
-  parts[Number] = $("#part").val();
-  symptoms[Number] = $("#symptom").val();
-  $("#AllSymptoms").val(symptoms);
-  $("#AllBodyParts").val(parts);
-  Number++;
-  console.log(symptoms);
-  console.log(parts);
-  alert("Symptom added to list, add more or submit.");
-}
+
+
 $(document).ready(function(){
 
 
-$("#part").change(function(){
-if($("#part").val() == ""){
-  $("#hide").attr('hidden', 'hidden');
-}
-else{
-  $("#hide").removeAttr('hidden');
-}
-var part = $(this).val();
+
+});
+function ChangeSypmtoms(){
+
+var part = $('#part').val();
 $("#bodyPart").val(part);
 $.ajax({
 url: "https://www.moja-diagnoza.si/api/v1/symptoms/bodypart/",
@@ -102,7 +76,11 @@ success: function(data){
   $("#symptom").html(options);
 }
 });
-});
-});
+}
+function changeSelectedOption(selectBoxId, optionIndex) {
+  var selectBox = document.getElementById(selectBoxId);
+  selectBox.selectedIndex = optionIndex;
+  ChangeSypmtoms();
+}
 </script>
 

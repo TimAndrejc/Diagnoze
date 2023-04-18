@@ -28,9 +28,13 @@ cursor: pointer;
 ]]></style>
 
 </defs>
-<a href="https://www.example.com">
-<rect class="myRect" x="125" y="0" width="110" height="125" onclick="window.location.href = 'https://www.example.com'" />
-</a>
+<rect class="myRect" x="125" y="0" width="85" height="120" onclick="changeSelectedOption('part',0)" />
+<rect xmlns="http://www.w3.org/2000/svg" class="myRect" x="98" y="120" width="140" height="125" onclick="changeSelectedOption('part',1)"/>
+<rect xmlns="http://www.w3.org/2000/svg" class="myRect" x="98" y="245" width="140" height="80" onclick="changeSelectedOption('part',2)"/>
+<rect xmlns="http://www.w3.org/2000/svg" class="myRect" x="98" y="325" width="140" height="45" onclick="changeSelectedOption('part',3)"/>
+<rect xmlns="http://www.w3.org/2000/svg" class="myRect" x="98" y="370" width="140" height="320" onclick="changeSelectedOption('part',5)"/>
+<rect xmlns="http://www.w3.org/2000/svg" class="myRect" x="0" y="120" width="98" height="280" onclick="changeSelectedOption('part',4)"/>
+<rect xmlns="http://www.w3.org/2000/svg" class="myRect" x="238" y="120" width="98" height="280" onclick="changeSelectedOption('part',4)"/>
 <path d="M0,0
 L0,688
 L335,688
