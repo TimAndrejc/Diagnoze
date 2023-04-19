@@ -14,7 +14,7 @@
     </ul>
   </div>
   <% if user_signed_in? %>
-      <div class="nav-item dropdown" style="padding-right: 10px">
+      <div class="nav-item dropdown" style="margin-right: 10px">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user.email %>
         </a>
@@ -35,7 +35,7 @@
 </nav>
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
-<%= link_to "Doctor", "/Doctor" %>
+
 <%= form_with url:"/Diagnosis" do |form| %>
 <div class="container">
 
@@ -67,11 +67,12 @@
 <div hidden="hidden" id ="hide" class="row">
 <div class="d-inline">
 <%= form.select :symptom, id:"" %>
-<div id="butts">
+</div>
+<div id="butts" class="d-flex flex-column" style="width: 100% !important;">
 </div>
 <br>
-
-<%= form.submit "Submit", class:"btn btn-primary" %>
+<div class="d-inline">
+<%= form.submit "Submit", class:"btn btn-success" %>
 <br>
 <div onclick="addSymptom()" class="btn btn-primary">
   New symptom
@@ -120,7 +121,7 @@ success: function(data){
   for (var i = 0; i < data.length; i++) 
   {
     options += '<option value="' + data[i]['title'] + '">' + data[i]['title'] + '</option>';
-    buttons += '<div class="btn btn-primary" onclick="changeSelectedSymptom(\'symptom\', ' + i + ')">' + data[i]['title'] + '</div><br>S';
+    buttons += '<div style="margin: 10px; width: 70%;" class="btn btn-primary" id="' + data[i]['title'] + '" onclick="changeSelectedSymptom(\'symptom\', ' + i + ')">' + data[i]['title'] + '</div>';
   }
   $("#hide").removeAttr('hidden');
   $("#symptom").html(options);
@@ -145,6 +146,11 @@ function changeSide(){
 function changeSelectedSymptom(selectBoxId, optionIndex) {
   var selectBox = document.getElementById(selectBoxId);
   selectBox.selectedIndex = optionIndex;
+
+}
+function ButtonColorChange(id){
+  var button = document.getElementById(id);
+  button.style.backgroundImage = "green";
 }
 </script>
 
