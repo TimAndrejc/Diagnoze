@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 688" width="335" height="688" style="pointer-events: none; display: block;"><defs><style>
+<svg xmlns="http://www.w3.org/2000/svg" width="237" height="588" style="pointer-events: none; display: block;"><defs><style>
 .myRect{
 z-index:999;
 cursor: pointer;
   pointer-events: auto;
+  fill: transparent;
 }
 .cls-1{fill:#f7f9f9;}.cls-2{fill:#899ba5;}.cls-3{fill:#8aa0a8;opacity:0.4;}</style></defs>
 <rect class="myRect" x="76" y="0" width="85" height="120" onclick="changeSelectedOption('part',0)" />

@@ -3,19 +3,13 @@
 <%= link_to "Doctor", "/Doctor" %>
 <%= form_with url:"/Diagnosis" do |form| %>
 <div class="container">
-<div class="row">
-<div class="col-md-12">
+
 <h1>Diagnosis</h1>
-</div>
-</div>
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-6">
 <h2>Choose body part</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
-<select id="part">
+
+<select id="part" hidden="hidden">
 <% @symptoms.each do |symptom| %>
 <option value="<%= symptom['code'] %>">
 <%= symptom['name'] %>
@@ -24,37 +18,37 @@
 
 <%= form.hidden_field :AllBodyParts, id:"AllBodyParts" %>
 <%= form.hidden_field :symptoms, id:"AllSymptoms"%>
+<div id="front">
+<%= inline_svg "male-front.svg" %>
 </div>
-<div>
+<div id="back" hidden="hidden">
+<%= inline_svg "male-back.svg" %>
 </div>
-<div class="row">
-<div class="col-md-12">
+<div class="btn btn-primary" onclick="changeSide()">Other side</div>
+</div>
+<div class="col-md-6">
 <h2>Choose symptom</h2>
-</div>
-</div>
+
 <div hidden="hidden" id ="hide" class="row">
-<div  class="col-md-12">
+<div class="d-inline">
 <%= form.select :symptom, id:"" %>
-</div>
-<div class ="col-md-12">
-<%= form.submit "Submit" %>
-<div class="col-md-12">
+
+<br>
+
+<%= form.submit "Submit", class:"btn btn-primary" %>
+<br>
 <div onclick="addSymptom()" class="btn btn-primary">
   New symptom
 </div>
 </div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
 
-</div>
-</div>
 </div>
 
 
 <% end %>
-<%= inline_svg "male-front.svg" %>
+
+</div>
+</div>
 <script>
 var Number  = 0;
 var symptoms = [];
@@ -99,6 +93,15 @@ function changeSelectedOption(selectBoxId, optionIndex) {
   var selectBox = document.getElementById(selectBoxId);
   selectBox.selectedIndex = optionIndex;
   ChangeSypmtoms();
+}
+function changeSide(){
+  if($("#front").attr('hidden') == 'hidden'){
+    $("#front").removeAttr('hidden');
+    $("#back").attr('hidden', 'hidden');
+  }else{
+    $("#back").removeAttr('hidden');
+    $("#front").attr('hidden', 'hidden');
+  }
 }
 </script>
 
