@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: sticky; top: 0; z-index: 1">
   <a class="navbar-brand" href="#">Diagnosis</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,22 +13,8 @@
       </li>
     </ul>
   </div>
-  <% if user_signed_in? %>
-      <div class="nav-item dropdown" style="margin-right: 10px">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.email %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-        </div>
-      </div>
-    <% else %>
-      <%= link_to "Login", new_user_session_path, class: "nav-item nav-link" %>
-      <%= link_to "Register", new_user_registration_path, class: "nav-item nav-link" %>
-    <% end %>
+  <div class="d-inline nav-item">
+    <%= link_to "Log out", "/logout", method: :delete , class: "nav-item nav-link", style: "margin-right: 10px;" %>
 
   </div>
 
@@ -37,11 +23,11 @@
 <p style="color: red"><%= alert %></p>
 
 <%= form_with url:"/Diagnosis" do |form| %>
-<div class="container">
+<div class="container diagBox">
 
 <h1>Diagnosis</h1>
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-6 col-sm-12">
 <h2>Choose body part</h2>
 
 <select id="part" hidden="hidden">
@@ -54,26 +40,28 @@
 <%= form.hidden_field :AllBodyParts, id:"AllBodyParts" %>
 <%= form.hidden_field :symptoms, id:"AllSymptoms"%>
 <div id="front">
-<%= inline_svg "male-front.svg" %>
+<%= inline_svg "male-front.svg", class:"svg" %>
 </div>
-<div id="back" hidden="hidden">
-<%= inline_svg "male-back.svg" %>
+<div id="back"  hidden="hidden">
+<%= inline_svg "male-back.svg", class:"svg" %>
 </div>
-<div class="btn btn-primary" onclick="changeSide()">Other side</div>
+<div class="btn btn-primary d-inline " onclick="changeSide()"><b>⮌</b></div>
 </div>
-<div class="col-md-6">
-<h2>Choose symptom</h2>
+<div class="col-md-6 col-sm-12">
+
 
 <div hidden="hidden" id ="hide" class="row">
-<div class="d-inline">
+<div id="title"></div>
+<div class="d-none">
 <%= form.select :symptom, id:"" %>
 </div>
-<div id="butts" class="d-flex flex-column" style="width: 100% !important;">
+<div class="scroller">
+<div id="butts" class="d-flex flex-column" >
+</div>
 </div>
 <br>
 <div class="d-inline">
-<%= form.submit "Submit", class:"btn btn-success" %>
-<br>
+<%= form.submit "Submit", class:"btn btn-success" %> 
 <div onclick="addSymptom()" class="btn btn-primary">
   New symptom
 </div>
@@ -116,6 +104,7 @@ data: {code: part},
 success: function(data){
   var options = '';
   var buttons = '';
+  var bodyPartName = data[0]['name'];
   data = data[0];
   data = data['symptoms'];
   for (var i = 0; i < data.length; i++) 
@@ -126,6 +115,7 @@ success: function(data){
   $("#hide").removeAttr('hidden');
   $("#symptom").html(options);
   $("#butts").html(buttons);
+  $("#title").html('<h2>Choose symptom for ' + bodyPartName + '</h2>' );
 }
 });
 }
