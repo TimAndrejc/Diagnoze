@@ -16,6 +16,7 @@
   </tbody>
 </table>
 <div class="text-center">
+<% if current_user.doctor == true %>
 <h2>Possible diagnosis</h2>
 <button class ="btn btn-primary"> <%= @diagnosis1%> </button>
 <button class ="btn btn-primary"> <%= @diagnosis2%> </button>
@@ -23,12 +24,20 @@
 <br>
 <hr>
 <h2> Other diagnosis? </h2>
-<%= form_for @diagnosis do |f| %>
+  <%= form_for @diagnosis do |f| %>
     <div class="d-flex justify-content-center">
     <%= f.text_field :chosen, placeholder: "Enter diagnosis", class: "form-control", style:"width:25%" %>
     </div>
     <br>
     <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <% if @diagnosis.chosen.present? %>
+<h2> Your diagnosis</h2>
+  <%= @diagnosis.chosen%>
+  <% else %>
+<h2> No diagnosis has been asigned </h2>
+  <% end %>
 <% end %>
 </div>
 

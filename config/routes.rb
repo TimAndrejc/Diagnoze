@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "symptoms#index" 
   get "/Doctor", to: "doctor#index"
-  
+  get "/MyDiagnosis", to: "mydiagnosis#index"
   # Defines the route for the symptoms controller
   resources :symptoms
   # Defines the route for the diagnosis controller

@@ -7,10 +7,16 @@
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="<%= root_path %>">Home</a>
-      </li>
+      </li> 
+      <% if current_user.doctor == true %>
       <li class="nav-item">
       <%= link_to "Doctor", "/Doctor", class: "nav-item nav-link" %>
       </li>
+      <% else %>
+      <li class="nav-item">
+      <%= link_to "My Diagnosis", "/MyDiagnosis", class: "nav-item nav-link"%>
+      </li>
+      <% end %>
     </ul>
   </div>
   <div class="d-inline nav-item">
