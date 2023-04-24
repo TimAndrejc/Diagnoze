@@ -78,7 +78,10 @@
 <% end %>
 
 </div>
-Symptoms: <div id="current"></div>
+<div class="row">
+<div class="col-md-12 col-sm-12 text-center">
+Symptoms: <div id="current"></div><div>
+</div>
 </div>
 <script>
 var Number  = 0;
@@ -94,7 +97,7 @@ function addSymptom(){
   console.log(parts);
   for (var i = 0; i < symptoms.length; i++) {
     if($("#" + symptoms[i]).length == 0){
-      $("#current").append('<div class="btn btn-primary" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
+      $("#current").append('<div class="btn btn-primary d-inline" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
     }
   }
   $("#hide").attr('hidden', 'hidden');
