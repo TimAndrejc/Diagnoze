@@ -51,7 +51,9 @@
 <div id="back"  hidden="hidden">
 <%= inline_svg "male-back.svg", class:"svg" %>
 </div>
-<div class="btn btn-primary d-inline " onclick="changeSide()"><b>⮌</b></div>
+<div  class="btn btn-primary d-inline " onclick="changeSide()"><i class="bi bi-arrow-repeat fa-lg"></i></div>
+<%= form.submit "Submit", class:"btn btn-success"%> 
+Sytoms: 
 </div>
 <div class="col-md-6 col-sm-12">
 
@@ -67,9 +69,8 @@
 </div>
 <br>
 <div class="d-inline">
-<%= form.submit "Submit", class:"btn btn-success" %> 
 <div onclick="addSymptom()" class="btn btn-primary">
-  New symptom
+  Add symptom to list
 </div>
 </div>
 
