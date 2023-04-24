@@ -20,7 +20,7 @@
     </ul>
   </div>
   <div class="d-inline nav-item">
-    <%= link_to "Log out", "/logout", method: :delete , class: "nav-item nav-link", style: "margin-right: 10px;" %>
+    <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete } , class: "nav-item nav-link", style: "margin-right: 10px;" %>
 
   </div>
 
