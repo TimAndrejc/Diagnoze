@@ -53,7 +53,6 @@
 </div>
 <div  class="btn btn-primary d-inline " onclick="changeSide()"><i class="bi bi-arrow-repeat fa-lg"></i></div>
 <%= form.submit "Submit", class:"btn btn-success"%> 
-Sytoms: 
 </div>
 <div class="col-md-6 col-sm-12">
 
@@ -76,10 +75,10 @@ Sytoms:
 
 </div>
 
-
 <% end %>
 
 </div>
+Symptoms: <div id="current"></div>
 </div>
 <script>
 var Number  = 0;
@@ -93,6 +92,11 @@ function addSymptom(){
   Number++;
   console.log(symptoms);
   console.log(parts);
+  for (var i = 0; i < symptoms.length; i++) {
+    if($("#" + symptoms[i]).length == 0){
+      $("#current").append('<div class="btn btn-primary" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
+    }
+  }
   $("#hide").attr('hidden', 'hidden');
 }
 
@@ -101,6 +105,17 @@ $(document).ready(function(){
 
 
 });
+function removeSymptom(index){
+  symptoms.splice(index, 1);
+  parts.splice(index, 1);
+  $("#AllSymptoms").val(symptoms);
+  $("#AllBodyParts").val(parts);
+  Number--;
+  $("#current").html('');
+  for (var i = 0; i < symptoms.length; i++) {
+    $("#current").append('<div class="btn btn-primary" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
+  }
+}
 function ChangeSypmtoms(){
 
 var part = $('#part').val();
