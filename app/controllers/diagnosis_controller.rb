@@ -3,6 +3,10 @@ class DiagnosisController < ApplicationController
 
     def new
         @diagnosis = params
+        if @diagnosis['symptoms'] == nil || @diagnosis['AllBodyParts'] == nil
+            redirect_to root_path
+            return
+        end
         @example = '{
             "diagnoza1": "Diagnoza 1",
             "diagnoza2": "Diagnoza 2",
