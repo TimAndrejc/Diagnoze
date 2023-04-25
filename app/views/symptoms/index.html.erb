@@ -25,8 +25,25 @@
   </div>
 
 </nav>
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
+<% if notice.present? %>
+<script>
+Swal.fire({
+  title: 'Success!',
+  text: '<%= notice %>',
+  confirmButtonText: 'OK'
+})
+</script>
+<% end %>
+<% if alert.present? %>
+<script>
+Swal.fire({
+  title: 'Error!',
+  text: '<%= alert %>',
+  icon: 'error',
+  confirmButtonText: 'OK'
+})
+</script>
+<% end %>
 
 <%= form_with url:"/Diagnosis" do |form| %>
 <div class="container diagBox">
