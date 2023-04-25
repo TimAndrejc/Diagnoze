@@ -1,12 +1,15 @@
+<div class="text-center d-flex justify-content-center">
 <% if @diagnoses.present? %>
 <% @diagnoses.each do |d|%>
-
-<%= link_to d.alldiagnoses, d %> 
-<br>
-
+   <a  style="text-decoration:none; color:black" href="/diagnosis/<%= d.id %>">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= d.id %></h5>
+  </div>
+  </a>
 <% end %>
 <% else %>
 <h2> No diagnosis found </h2> 
 <% end %>
-
+</div>
 
