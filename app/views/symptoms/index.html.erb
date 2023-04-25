@@ -100,6 +100,7 @@ Swal.fire({
 Symptoms: <div id="current"></div><div>
 </div>
 </div>
+</div>
 <script>
 var Number  = 0;
 var symptoms = [];
@@ -109,14 +110,13 @@ function addSymptom(){
   symptoms[Number] = $("#symptom").val();
   $("#AllSymptoms").val(symptoms);
   $("#AllBodyParts").val(parts);
-  Number++;
   console.log(symptoms);
-  console.log(parts);
-  $("#current").html('');
+  Number++;
+  $("#current").html("");
   for (var i = 0; i < symptoms.length; i++) {
-    if($("#" + symptoms[i]).length == 0){
+      
       $("#current").append('<div class="btn btn-primary" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
-    }
+
   }
   $("#hide").attr('hidden', 'hidden');
 }
@@ -134,7 +134,7 @@ function removeSymptom(index){
   Number--;
   $("#current").html('');
   for (var i = 0; i < symptoms.length; i++) {
-    $("#current").append('<div class="btn btn-primary" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
+      $("#current").append('<div class="btn btn-primary" style="margin: 10px; width: 70%;" id="' + symptoms[i] + '" onclick="removeSymptom(' + i + ')">' + symptoms[i] + '</div>');
   }
 }
 function ChangeSypmtoms(){
